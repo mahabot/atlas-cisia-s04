@@ -1,0 +1,37 @@
+# Fichiers locaux et caches
+.DS_Store
+Thumbs.db
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Environnements Python
+.venv/
+venv/
+env/
+
+# Conception et matériel formateur : jamais publiés
+_conception/
+
+# Anciens runs locaux conservés pour référence, mais non distribués
+M1/starter/work/
+
+# Artefacts lourds ou régénérables
+checkpoints/
+runs/
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Sorties locales qui ne constituent pas un livrable
+*.log
+.coverage
+htmlcov/
+
+# Ne pas ignorer work/ : dans le dépôt privé de l'apprenant, ce dossier
+# contient précisément les productions à versionner.
