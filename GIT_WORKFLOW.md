@@ -86,7 +86,8 @@ tests, rapports et livrables placés sous `work/` sont, eux, versionnables.
 1. Travailler sur `main` dans le dépôt privé de l'apprenant.
 2. Ne jamais pousser vers `upstream`.
 3. Ne pas modifier `data_pack/`, les briefs ou les starters de référence.
-4. Développer uniquement dans `work/MN/`.
+4. Développer dans `work/MN/`. Seuls les workflows GitHub actifs nécessaires
+   à un brief sont placés à la racine dans `.github/workflows/`.
 5. Committer avant de synchroniser une nouvelle publication.
 6. En cas de conflit, ne rien supprimer : conserver les productions sous
    `work/` et demander de l'aide si la résolution n'est pas évidente.
