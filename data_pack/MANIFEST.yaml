@@ -3,7 +3,7 @@ status: in_progress
 distribution: learner_pack
 generation_scripts_distributed: false
 synthetic_data: true
-current_release: diagops-2026-S1-m2-v2
+current_release: diagops-2026-S1-m3-v1
 
 periods:
   - id: "2026-S1"
@@ -55,6 +55,12 @@ files:
     entity: "sensors"
     module_min: "M3"
     required: true
+    expected_rows: 50401
+    delivery_status: ready_for_distribution
+    quality_review: timeseries_schema_and_pedagogical_anomaly_review_v1
+    nominal_step_hours: 6
+    instrumented_equipment: 36
+    scope: "M3 sensor series; partial park coverage is intentional."
 
   - path: "2026-S1/maintenance/maintenance_history.csv"
     entity: "maintenance_history"
@@ -79,6 +85,14 @@ files:
     delivery_status: ready_for_distribution
     quality_review: continuity_pack_checksums_and_scope_review_v1
     scope: "Common M1 reference used to start M2 independently of personal M1 completion."
+
+  - path: "2026-S1/reference_runs/m2_for_m3/"
+    entity: "m2_reference_preparation"
+    module_min: "M3"
+    required: true
+    delivery_status: ready_for_distribution
+    quality_review: continuity_pack_checksums_and_scope_review_v1
+    scope: "Common M2 prepared tables, quarantine and rule registry used to start M3 independently of personal M2 completion."
 
   - path: "2026-S1/m2_candidate_release/"
     entity: "m2_candidate_release"
@@ -124,5 +138,8 @@ notes:
   - "No anonymized exercise output is distributed."
   - "The M1 annotated subset is an input dataset, not a correction key."
   - "M2 opens equipment, events and maintenance history; sensors remain closed until M3."
+  - "M3 opens the 2026-S1 sensor series; the instrumented park is a deliberate subset of equipment.csv."
+  - "The sensor table has no declared row identifier: the logical key must be rebuilt during M3."
+  - "The M2 to M3 reference preparation is a starting point, not a correction of the M2 brief."
   - "M2 tables intentionally contain controlled pedagogical anomalies documented only in the trainer area."
   - "The optional M2 candidate release is intentionally unqualified; its presence does not authorize integration into the published tables."

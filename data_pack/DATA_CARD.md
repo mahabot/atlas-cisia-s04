@@ -76,6 +76,40 @@ apprenants.
 Les donnees capteurs ne sont pas ouvertes en M2. Elles restent reservees au
 travail temporel et multi-source de M3.
 
+## Table ouverte en M3
+
+La révision `diagops-2026-S1-m3-v1` ajoute `2026-S1/sensors/sensor_readings.csv` :
+50 401 mesures issues de 36 équipements instrumentés, au pas nominal de six
+heures, du 2 janvier au 30 juin 2026.
+
+Cette table est la première source temporelle du corpus. Elle n'a pas
+d'identifiant de ligne : la clé logique est le triplet
+`equipment_id + timestamp + sensor_name`.
+
+Elle contient des anomalies pédagogiques contrôlées : doublons stricts,
+doublons de clé à valeur divergente, horodatages hétérogènes, série décalée
+dans le temps, changements d'unité, capteur figé, dérive lente, trou
+d'échantillonnage, valeurs sentinelles, mesures hors période et mesures
+rattachées à un équipement inconnu. Certaines variations sont réelles et ne
+doivent pas être supprimées. L'inventaire exact des anomalies n'est pas
+distribué aux apprenants.
+
+Le parc instrumenté est volontairement partiel : 36 équipements sur 416, avec
+une couverture inégale selon le site, le type d'équipement et la criticité.
+Toute statistique calculée sur les capteurs porte donc sur une partie du parc.
+La composition exacte du parc instrumenté n'est pas décrite ici : elle se
+mesure à partir des données.
+
+## Référence de continuité M2 vers M3
+
+Le dossier `2026-S1/reference_runs/m2_for_m3/` fournit un état préparé commun
+des trois tables ouvertes en M2 : tables préparées, quarantaine, registre des
+règles appliquées, rapport de validation et décision de référence. Il permet de
+démarrer M3 sans dépendre de l'achèvement des productions personnelles de M2.
+
+Ce dossier n'est pas une correction du brief M2. Le registre est partiel,
+plusieurs décisions restent discutables et aucune règle temporelle n'y figure.
+
 ## Livraison candidate facultative M2
 
 La révision `diagops-2026-S1-m2-v2` ajoute le dossier

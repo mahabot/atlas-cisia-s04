@@ -11,7 +11,8 @@ et conservent leurs productions dans un dépôt privé indépendant (`origin`).
 |---|---|---|
 | M0 | passé | briefs, synthèse, acquis et modèles |
 | M1 | passé | briefs, synthèse, acquis et starter |
-| M2 | ouvert | présentiel 14 h, online 6 h, starter et référence de continuité |
+| M2 | passé | présentiel 14 h, online 6 h, starter et référence de continuité |
+| M3 | ouvert | présentiel 14 h, online 6 h, starter, données capteurs et référence de continuité |
 
 Les données distribuées sont centralisées dans [`data_pack/`](data_pack/).
 Un module peut les utiliser, mais ne doit pas en conserver de copie.
@@ -32,14 +33,14 @@ Le dépôt pédagogique ne publie aucun travail dans `work/MN/`. Chaque apprenan
 peut donc y versionner sa production sans conflit avec les mises à jour de
 `upstream/main`.
 
-## Démarrer M2
+## Démarrer M3
 
 Après avoir configuré les remotes comme indiqué dans
 [`GIT_WORKFLOW.md`](GIT_WORKFLOW.md) :
 
 ```bash
-python tools/init_module.py M2
-cd work/M2
+python tools/init_module.py M3
+cd work/M3
 python -m venv .venv
 ```
 

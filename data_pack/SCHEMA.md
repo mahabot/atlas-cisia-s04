@@ -109,6 +109,20 @@ Mesures temporelles issues des equipements.
 | `unit` | string | unite |
 | `period` | string | periode de disponibilite |
 
+Aucune colonne ne porte d'identifiant de ligne. La clé logique d'une mesure est
+le triplet `equipment_id + timestamp + sensor_name`. Elle doit être reconstruite
+par le travail du module ; le fichier reçu ne garantit ni son unicité, ni
+l'homogénéité du format d'horodatage, ni la cohérence entre `sensor_name` et
+`unit`.
+
+Le pas d'échantillonnage nominal de la livraison `2026-S1` est de six heures. Le
+parc instrumenté est un sous-ensemble du parc décrit par `equipment.csv` : la
+couverture est partielle par construction et doit être décrite avant toute
+conclusion.
+
+Mise a disposition initiale : M3, dans `2026-S1/sensors/sensor_readings.csv`.
+Volume distribue : 50 401 lignes, anomalies pedagogiques incluses.
+
 ### `maintenance_history`
 
 Historique des interventions et decisions de maintenance.
