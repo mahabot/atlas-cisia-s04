@@ -129,6 +129,33 @@ jamais désigner les lignes concernées. Son périmètre exclut la structure
 temporelle des séries et leur cohérence avec les autres sources : il le rappelle
 à chaque exécution.
 
+## Actifs ouverts en M4
+
+La révision `diagops-2026-S1-m4-v1` ajoute trois ensembles.
+
+`2026-S1/model_eval/` fournit 30 fenêtres de calibration étiquetées et 60
+fenêtres de test sans étiquette. Chaque fenêtre contient 30 mesures et porte un
+`window_id` indivisible. Les lots sont disjoints des lots de contrôle M3. La
+cible pédagogique est la provenance `réelle` ou `fabriquée`, jamais une panne
+future. Les oracles de test restent côté formateur.
+
+`2026-S1/knowledge/` contient huit documents synthétiques de maintenance et de
+gouvernance accompagnés d’un manifeste versionné. Droits, sensibilité, statut de
+révision, rôles autorisés et checksums conditionnent l’admission dans un index.
+Une révision remplacée et un document restreint sont conservés pour éprouver les
+contrôles ; leur présence ne les rend pas admissibles pour tous les rôles.
+
+`2026-S1/rag_eval/questions.jsonl` contient douze questions de calibration dont
+les labels sont visibles et douze questions de test dont les labels sont
+scellés. Les questions couvrent citations, abstention, révisions, unités,
+permissions et limites de l’agent. Le lot de contradiction du brief 2 n’est
+révélé qu’après gel du premier candidat.
+
+Le dossier `2026-S1/reference_runs/m3_for_m4/` fige enfin une baseline à règles
+et ses métriques sur la calibration. Cette baseline est volontairement limitée :
+elle signale des violations de contrat et ne constitue pas une vérité de
+provenance.
+
 ## Contrat de provenance
 
 À partir de M3, une table de mesures transmise d'un module à l'autre déclare

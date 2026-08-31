@@ -13,9 +13,26 @@ et conservent leurs productions dans un dépôt privé indépendant (`origin`).
 | M1 | passé | briefs, synthèse, acquis et starter |
 | M2 | passé | présentiel 14 h, online 6 h, starter et référence de continuité |
 | M3 | ouvert | présentiel 14 h, online 6 h, starter, données capteurs et référence de continuité |
+| M4 | prêt à distribuer — 40 h | conception et évaluation : modèle simple, RAG minimal, agent borné et réplication |
+| M5 | prévu — 40 h | déploiement, CI d'évaluation, monitoring et exercice d'incident |
+| M6 | prévu — 40 h | amélioration continue, outils en lecture seule, feedback et campagne adversariale |
+| M7 | prévu — 40 h | revue d'architecture, sécurité, souveraineté, réversibilité et migration exercée |
+| M8 | prévu — 40 h | nouveau projet RAG-agentique, audit indépendant, correction et soutenance |
 
 Les données distribuées sont centralisées dans [`data_pack/`](data_pack/).
 Un module peut les utiliser, mais ne doit pas en conserver de copie.
+
+La modernisation RAG et agentique progresse de M4 a M8. Les briefs online
+restent consacres au programme CampusAtlas certifiant ; les briefs presentiels
+portent la mise a jour 2026. A partir de M4, un brief d'approfondissement de
+20 h ajoute une realisation individuelle, une contradiction independante puis
+une remediation et une defense. Les contrats d'actifs futurs marques `planned`
+dans le manifeste ne signifient pas que ces actifs sont deja distribues.
+
+La veille technologique et reglementaire ouverte en M0 est consolidee en M4,
+puis prolongee jusqu'en M8 par un checkpoint inclus dans chaque brief
+presentiel. Elle ne majore pas les quotas de 40 h : ses decisions sont integrees
+aux risques, gates, politiques, ADR et dossiers deja produits dans le module.
 
 ## Organisation du dépôt
 
@@ -47,6 +64,24 @@ python -m venv .venv
 Le script refuse d'écraser un dossier existant. Les notebooks et utilitaires
 retrouvent automatiquement les données sous `data_pack/2026-S1/`.
 
+## Démarrer M4
+
+Le M4 utilise la révision `diagops-2026-S1-m4-v1`. Avant l’ouverture, le
+formateur conserve les oracles et le lot de contradiction hors du dépôt
+apprenant, puis vérifie les checksums du data pack.
+
+```bash
+python tools/init_module.py M4
+cd work/M4
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.lock
+python -m pytest -q
+```
+
+Le test capteur et les labels RAG de test ne sont restitués qu’après gel du
+candidat. Le lot du brief 2 est remis séparément après la première décision M4.
+
 ## Règles de publication
 
 - dans le dépôt pédagogique, `upstream/main` contient uniquement le matériel
@@ -58,7 +93,10 @@ retrouvent automatiquement les données sous `data_pack/2026-S1/`.
 
 ```bash
 python tools/check_publication.py
+python tools/check_m4_release.py --trainer
 ```
 
 Ce contrôle inspecte les fichiers suivis ou candidats au commit et bloque les
 contenus privés, les copies de données par module et les fichiers trop lourds.
+Le second contrôle vérifie les lots, labels scellés, checksums, baseline M3 et
+actifs formateur nécessaires à l’ouverture du M4.

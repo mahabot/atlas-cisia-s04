@@ -148,6 +148,27 @@ Mise a disposition initiale : M3, brief 2.
 Volume distribue : 6 000 lignes pour `control_batch.csv`, 720 lignes pour
 `control_sample.csv`.
 
+### `m4_sensor_model_evaluation`
+
+Lots de fenêtres capteurs utilisés pour comparer la baseline M3 et les modèles
+simples du M4.
+
+| Champ | Type | Description |
+|---|---|---|
+| `window_id` | string | groupe indivisible de 30 mesures consécutives |
+| `equipment_id` | string | équipement de la fenêtre |
+| `timestamp` | datetime | horodatage de la mesure |
+| `sensor_name` | string | capteur observé |
+| `value` | number ou vide | valeur brute |
+| `unit` | string | unité déclarée |
+| `period` | string | période de livraison |
+| `provenance` | enum | `réelle` ou `fabriquée`, calibration uniquement |
+
+`sensor_calibration.csv` expose la cible. `sensor_test.csv` ne l’expose pas :
+l’oracle reste côté formateur jusqu’au gel du candidat. Une partition ne sépare
+jamais les lignes d’un même `window_id`. La provenance ne qualifie ni la qualité
+d’une mesure, ni une anomalie métier, ni une panne future.
+
 ### `maintenance_history`
 
 Historique des interventions et decisions de maintenance.
@@ -222,6 +243,48 @@ Retours des techniciens apres utilisation de DiagOps.
 | `user_decision` | string | decision humaine |
 | `model_helpfulness` | integer | note de 1 a 5 |
 | `comment` | string | commentaire libre |
+
+### `knowledge_documents`
+
+Manifeste du corpus documentaire utilise par le RAG a partir de M4.
+
+| Champ | Type | Description |
+|---|---|---|
+| `document_id` | string | identifiant stable du document |
+| `title` | string | titre lisible |
+| `revision` | string | version ou revision de la source |
+| `effective_at` | date ou null | date d'effet connue |
+| `source_type` | string | manuel, procedure, consigne ou retour d'experience |
+| `asset_path` | string | chemin relatif sous `knowledge/documents/` |
+| `license` | string | droit de reutilisation ou regime interne |
+| `sensitivity` | string | public, interne ou restreint |
+| `status` | string | active, superseded, draft ou quarantined |
+| `supersedes_document_id` | string ou vide | document remplacé par cette révision |
+| `allowed_roles` | liste `;` | rôles autorisés à recevoir le contenu |
+| `checksum_sha256` | string | empreinte du fichier distribue |
+
+Un document sans droit d'usage, niveau de sensibilite ou checksum n'est pas
+admis dans l'index. Le manifeste decrit une source documentaire ; il ne contient
+ni chunk, ni embedding, ni sortie de modele.
+
+### `rag_evaluation_questions`
+
+Jeu gele servant a comparer retrieval et generation fondee sur des preuves.
+
+| Champ | Type | Description |
+|---|---|---|
+| `eval_id` | string | identifiant stable de la question |
+| `question` | string | question adressee au systeme |
+| `role` | string | rôle au nom duquel la question est posée |
+| `expected_document_ids` | liste de strings ou null | sources attendues ; null pour un test scellé |
+| `answerable` | boolean ou null | étiquette visible en calibration, scellée en test |
+| `risk_tags` | liste de strings | injection, obsolescence, conflit ou autre risque |
+| `split` | string | calibration ou test |
+| `label_visibility` | string | visible ou sealed |
+
+Les questions du split `test` sont visibles, mais leurs labels ne le sont pas.
+Le formateur restitue les métriques après gel du pipeline. Une question non
+répondable attend un refus motivé, jamais une réponse sans preuve.
 
 ### `images`
 
