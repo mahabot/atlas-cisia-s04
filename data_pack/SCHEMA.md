@@ -317,7 +317,8 @@ Images de defauts industriels issues d'un corpus externe documente.
 | `asset_source` | string | source externe documentee |
 | `label` | string | etiquette disponible dans le corpus |
 
-Mise a disposition initiale : M7.
+Extension facultative envisagee a partir de M7, non livree dans le kit courant.
+Le schema ci-dessus decrit le contrat d'une future livraison qualifiee.
 
 ## Contrat de provenance
 

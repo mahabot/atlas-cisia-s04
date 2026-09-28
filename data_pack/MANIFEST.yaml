@@ -4,6 +4,8 @@ distribution: learner_pack
 generation_scripts_distributed: false
 synthetic_data: true
 current_release: diagops-2026-S1-m6-v1
+module_extensions:
+  M7: diagops-2026-S1-m7-v1
 
 periods:
   - id: "2026-S1"
@@ -184,8 +186,10 @@ files:
     entity: "m6_reference_agent"
     module_min: "M7"
     required: true
-    delivery_status: planned
-    scope: "Bounded read-only agent, traces and evaluation results used for architecture review."
+    delivery_status: ready_for_distribution
+    release_id: diagops-m6-reference-r1
+    quality_review: source_hashes_and_m6_campaign_replay_with_known_failures_v1
+    scope: "Frozen M6 starter, traces and known failures for architecture audit; not a completed M6 solution."
 
   - path: "2026-S1/reference_runs/m7_for_m8/"
     entity: "m7_reference_architecture"
@@ -240,7 +244,8 @@ files:
   - path: "images/manifest.csv"
     entity: "images"
     module_min: "M7"
-    required: true
+    required: false
+    delivery_status: planned
     source: "external_corpus_to_be_selected"
 
 integrity:

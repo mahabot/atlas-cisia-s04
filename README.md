@@ -16,7 +16,7 @@ et conservent leurs productions dans un dépôt privé indépendant (`origin`).
 | M4 | prêt à distribuer — 40 h | conception et évaluation : modèle simple, RAG minimal, agent borné et réplication |
 | M5 | prêt à distribuer — 40 h | déploiement, CI d'évaluation, monitoring et exercice d'incident |
 | M6 | prêt à distribuer — 40 h | amélioration continue, outils en lecture seule, feedback et campagne adversariale |
-| M7 | prévu — 40 h | revue d'architecture, sécurité, souveraineté, réversibilité et migration exercée |
+| M7 | prêt à distribuer — 40 h | revue d'architecture, sécurité, souveraineté, réversibilité et migration exercée |
 | M8 | prévu — 40 h | nouveau projet RAG-agentique, audit indépendant, correction et soutenance |
 
 Les données distribuées sont centralisées dans [`data_pack/`](data_pack/).
@@ -130,6 +130,27 @@ python -m pytest -q
 La période `2026-S2` est une extension facultative tant qu'elle n'est pas
 explicitement déclarée `ready_for_distribution` dans le manifeste.
 
+## Démarrer M7
+
+Le kit [M7/DIFFUSION.md](M7/DIFFUSION.md) fournit séquençage, grille et gates.
+L'extension `diagops-2026-S1-m7-v1` ajoute la référence d'audit
+`diagops-m6-reference-r1` au socle M6. Elle expose les échecs connus du starter
+M6 ; elle ne certifie pas une solution M6 ni la progression de la promotion.
+M8 reste prévu. Le corpus image reste facultatif et non livré.
+
+```bash
+python tools/init_module.py M7
+cd work/M7
+python -m unittest discover -s tests -v
+python lab.py --output results/decouverte-r1
+```
+
+Python 3.11+ suffit pour M7, sans dépendance pip ni compte cloud. Le banc local
+JSON → SQLite mesure la conservation du classement et exerce un rollback après
+corruption. Les cas propres à l'apprenant, la revue indépendante et la défense
+restent à réaliser. Le formateur vérifie le kit depuis S04 avec
+`python tools/check_m7_release.py --trainer` dans l'environnement M6.
+
 ## Règles de publication
 
 - dans le dépôt pédagogique, `upstream/main` contient uniquement le matériel
@@ -143,6 +164,8 @@ explicitement déclarée `ready_for_distribution` dans le manifeste.
 python tools/check_publication.py
 python tools/check_m4_release.py --trainer
 python tools/check_m5_release.py --trainer
+python tools/check_m6_release.py --trainer
+python tools/check_m7_release.py --trainer
 ```
 
 Ce contrôle inspecte les fichiers suivis ou candidats au commit et bloque les

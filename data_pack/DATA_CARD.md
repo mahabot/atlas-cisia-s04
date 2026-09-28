@@ -10,7 +10,8 @@ artificielle appliquees a la maintenance industrielle.
 
 Il contient des rapports techniciens, des donnees d'equipements, des mesures
 capteurs, des historiques d'interventions, des evenements de maintenance, des
-retours utilisateurs et un corpus image externe pour le travail multimodal.
+retours utilisateurs et un corpus documentaire. Un corpus image externe reste
+une extension facultative non livree, soumise a qualification avant usage.
 
 ## Origine
 
@@ -18,8 +19,8 @@ Les donnees textuelles, tabulaires et temporelles sont synthetiques.
 Elles ont ete creees pour exercer des competences de cadrage, preparation,
 entrainement, evaluation, integration, deploiement et amelioration continue.
 
-Le corpus image M7 provient d'une source externe qui doit etre documentee dans
-le manifeste avant distribution.
+Si un corpus image est retenu a partir de M7, sa source externe doit etre
+documentee dans le manifeste avant distribution. Le kit M7 courant n'en depend pas.
 
 ## Usages autorises
 
